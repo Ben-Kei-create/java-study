@@ -53,3 +53,31 @@ default -> System.out.println("OVER");
 break が不要
 → -> を使った場合は自動的にそのケースで終了するので break は不要
 */
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // ----------------------------------------
+        // [乱数 - 1以上の乱数1]
+        // ----------------------------------------
+        // 1から6のランダムな整数を出力してください
+
+        int a = (int) (Math.random() * 6) + 1;
+        System.out.println(a);
+    }
+}
+
+// import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // ----------------------------------------
+        // [乱数 - 範囲を指定した乱数1]
+        // ----------------------------------------
+        // 3から8のランダムな整数を出力してください
+
+        System.out.println((int)(Math.random()* 8 - 3 + 1) + 3);
+    }
+}
+
