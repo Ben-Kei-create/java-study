@@ -23,3 +23,13 @@ public class Main {
         System.out.println(i);
     }
 }
+
+import java.util.LinkedHashMap;
+
+public class Main {
+    public static void main(String... args) {
+        LinkedHashMap<Integer, String> users = new LinkedHashMap<>();
+        users.put(1, "kirishima");
+        System.out.println(users);
+    }
+}
