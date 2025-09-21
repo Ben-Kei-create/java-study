@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" rel="styleSheet">
+    <title>編集</title>
+</head>
+<body>
+<div class="header-contents">
+    <h2>編集画面</h2>
+</div>
+
+<div class="errorMessage" th:each="errorMessage : ${errorMessages}">
+    <span th:text="${errorMessage}"></span>
+    <th:remove var="errorMessages" scope="session" />
+</div>
+
+<!--　ここで、送れるデータは、formModelという箱に入れて[id], [content]のみ送ることができる。formModelは単なる入れ物であって、データを送信するために使う。
+　　　 formModelの中にtop画面からデータがおくられているというわけではない。　-->
+<div class="main-contents">
+    <form th:action="@{/update/{id}(id=${formModel.id})}" th:object="${formModel}" th:method="put">
+        <div class="form-area">
+            <label>投稿内容</label>
+            <label>
+                <textarea class="tweet-box" name="content" th:field="*{content}" size="20" maxlength="200"></textarea>
+            </label><br/>
+            <input type="submit" value="更新"/>
+        </div>
+    </form>
+</div>
+<div class="footer-contents">
+    <form action="/">
+        <input type="submit" value="戻る" />
+    </form>
+</div>
+</body>
+</html>

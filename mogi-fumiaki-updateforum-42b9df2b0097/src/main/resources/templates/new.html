@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" rel="styleSheet">
+    <title>新規投稿</title>
+</head>
+<body>
+<div class="header-contents">
+    <h2>新規投稿</h2>
+</div>
+
+<!-- errorMessageを表示する -->
+<!--errorMessagesリストが空(Empty)の時に、errorMessagesを表示するように実装-->
+<!--<div class="text" th:if="${#lists.isEmpty(errorMessages)}">-->
+    <div class="errorMessage" th:each="errorMessage : ${errorMessages}">
+        <span th:text="${errorMessage}"></span>
+        <th:remove var="errorMessages" scope="session" />
+    </div>
+<!--</div>-->
+
+<div class="main-contents">
+    <form method="post" action="/add" th:object="${formModel}">
+        <div class="form-area">
+            <label>投稿内容</label>
+            <!--labelをtextareaにはさんだら、うまく言った。-->
+            <label>
+                <textarea class="tweet-box" th:field="*{content}" size="20" maxlength="200"></textarea>
+            </label><br/>
+            <input type="submit" value="投稿" />
+        </div>
+    </form>
+</div>
+<div class="footer-contents">
+    <form action="/">
+        <input type="submit" value="戻る" />
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link th:href="@{/css/style.css}" rel="styleSheet">
+        <title>返信編集画面</title>
+    </head>
+    <body>
+    <div class="header-contents">
+        <h2>返信編集画面</h2>
+    </div>
+
+    <!--    エラーメッセージを以下に出力する-->
+    <div class="errorMessage" th:each="errorMessage : ${errorMessages}">
+        <span th:text="${errorMessage}"></span>
+        <th:remove var="errorMessages" scope="session" />
+    </div>
+
+    <!--  messageIdのみでは×　→　では何が必要かまで具体的に　-->
+    <div class="main-contents">
+        <form th:action="@{/update/comment/{id}(id=${commentFormModel.id})}" th:object="${commentFormModel}" th:method="put">
+            <div class="form-area">
+                <label>投稿内容</label>
+                <textarea class="edit-box" name="comment" th:field="*{comment}" size="20" maxlength="200"/></textarea><br/>
+                <input type="hidden" name="messageId" th:value="${commentFormModel.messageId}"><br/>
+                <input type="submit" value="更新"/>
+            </div>
+        </form>
+    </div>
+    <div class="footer-contents">
+        <form action="/">
+            <input type="submit" value="戻る"/>
+        </form>
+    </div>
+    </body>
+</html>
